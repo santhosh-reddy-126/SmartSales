@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Sales Forecast</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="top">
+        <nav>
+            <h1>Smart Sales Forecast</h1>
+
+            <h2 id="click">Explore <span>↗</span></h2>
+        </nav>
+    </div>
+    <div class="middle">
+        <div class="content">
+            <h1>Transforming Sales Insights into<br /> <span>Retail Success</span></h1>
+        </div>
+    </div>
+    <div class="Content" id="cont01">
+        <h1>Let’s Forecast the Future Sales</h1>
+        
+        <div class="data">
+            <div class="left">
+                <form action="/predict" method="POST" id="myForm">
+                <input type="number" placeholder="Discount(%)" name="discount" id="discount"/><br />
+                <input type="number" placeholder="Profit per Set" name="profit" id="profit"/>
+                <select name="year" id="year">
+                    <option value="" disabled selected>Select a Year</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                </select>
+                <select name="month" id="month">
+                    <option value="" disabled selected>Select a Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <div class="region">
+                    <select name="region" id="region">
+                        <option value="" disabled selected>--Region--</option>
+                        <option value="West">West</option>
+                        <option value="East">East</option>
+                        <option value="Central">Central</option>
+                        <option value="South">South</option>
+                        <option value="North">North</option>
+                    </select>
+                </div>
+                <div class="category">
+                    <select name="cat" id="cat">
+                        <option value="" disabled selected>--Category--</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Eggs, Meat & Fish">Eggs, Meat & Fish</option>
+                        <option value="Fruits & Veggies">Fruits & Veggies</option>
+                        <option value="Bakery">Bakery</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Food Grains">Food Grains</option>
+                        <option value="Oil & Masala">Oil & Masala</option>
+                    </select>
+                </div>
+                <div class="sub">
+                    <select name="subc" id="subc">
+                        <option value="" disabled selected>--Sub Category--</option>
+                        <option value="Health Drinks">Health Drinks</option>
+                        <option value="Soft Drinks">Soft Drinks</option>
+                        <option value="Cookies">Cookies</option>
+                        <option value="Breads & Buns">Breads & Buns</option>
+                        <option value="Chocolates">Chocolates</option>
+                        <option value="Noodles">Noodles</option>
+                        <option value="Masalas">Masalas</option>
+                        <option value="Biscuits">Biscuits</option>
+                        <option value="Cakes">Cakes</option>
+                        <option value="Edible Oil & Ghee">Edible Oil & Ghee</option>
+                        <option value="Spices">Spices</option>
+                        <option value="Mutton">Mutton</option>
+                        <option value="Eggs">Eggs</option>
+                        <option value="Organic Staples">Organic Staples</option>
+                        <option value="Fresh Fruits">Fresh Fruits</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Fresh Vegetables">Fresh Vegetables</option>
+                        <option value="Atta & Flour">Atta & Flour</option>
+                        <option value="Organic Fruits">Organic Fruits</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Organic Vegetables">Organic Vegetables</option>
+                        <option value="Dals & Pulses">Dals & Pulses</option>
+                        <option value="Rice">Rice</option>
+                    </select>
+
+                </div>
+                <div class="City">
+                    <select name="city" id="city">
+                        <option value="" disabled selected>--City--</option>
+                        <option value="Kanyakumari">Kanyakumari</option>
+                        <option value="Tirunelveli">Tirunelveli</option>
+                        <option value="Bodi">Bodi</option>
+                        <option value="Krishnagiri">Krishnagiri</option>
+                        <option value="Vellore">Vellore</option>
+                        <option value="Perambalur">Perambalur</option>
+                        <option value="Tenkasi">Tenkasi</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Salem">Salem</option>
+                        <option value="Karur">Karur</option>
+                        <option value="Pudukottai">Pudukottai</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Ramanadhapuram">Ramanadhapuram</option>
+                        <option value="Cumbum">Cumbum</option>
+                        <option value="Virudhunagar">Virudhunagar</option>
+                        <option value="Madurai">Madurai</option>
+                        <option value="Ooty">Ooty</option>
+                        <option value="Namakkal">Namakkal</option>
+                        <option value="Viluppuram">Viluppuram</option>
+                        <option value="Dindigul">Dindigul</option>
+                        <option value="Theni">Theni</option>
+                        <option value="Dharmapuri">Dharmapuri</option>
+                        <option value="Nagercoil">Nagercoil</option>
+                        <option value="Trichy">Trichy</option>
+                    </select>
+
+                </div>
+                <input type="submit" class="predict" value="Unlock Your Sales Forecast!"></input>
+            </div>
+            </form>
+            <div class="right">
+                {% if status %}
+                    <div class="loading">
+                        <div class="item"></div>
+                    </div>
+                {% else %}
+                    {% if ans %}
+                        {% if up==0 %}
+                            <div class="range">Expect sales below <span>{{down}}</span>,where potential meets possibility!</div>
+                            <div class="val">Expect your sales to land around <span>{{ans}}</span>, with a likelihood of being close to this figure.</div>
+                        {% else %}
+                            <div class="range">Expect sales between <span>{{up}} and {{down}}</span>,where potential meets possibility!</div>
+                            <div class="val">Expect your sales to land around <span>{{ans}}</span>, with a likelihood of being close to this figure.</div>
+                        {% endif %}
+                    {% endif %}
+                    
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+    <div class="Explore" id="target">
+        <h1>Smart Sales Forecast Using Machine Learning</h1>
+        <div class="flex" id="intro">
+            <img src="{{ url_for('static', filename='images/bg2.svg') }}" width="300" height="300"/>
+            <p>This project involves developing a machine learning model to <span>predict supermarket sales based on various features.</span> We utilized the <span>Random Forest model</span> and <span>Artificial Neural Networks</span> to capture sales patterns.<span>Mean Absolute Error (MAE)</span> was employed as the evaluation metric.</p>
+        </div>
+        <div class="flex" id="month">
+            <p>Sales saw a noticeable <span>rise during November and December</span>, driven by holiday shopping and promotions. These months significantly <span>influence overall sales performance</span>. Their seasonal effect must be considered in sales predictions for <span>improved accuracy.</span></p>
+            <img src="{{ url_for('static', filename='images/month.jpg') }}" width="300" height="300"/>
+            
+        </div>
+        <div class="flex" id="year">
+            <img src="{{ url_for('static', filename='images/year.jpg') }}" width="350" height="300"/>
+            <p>The years 2017 and 2018 showed significant <span>sales growth compared to previous years.</span> This positive trend had a substantial impact on the model, reflecting <span>strong performance improvements.</span> The increase in sales during these years was beneficial for the overall model analysis and insights.</p>
+        </div>
+        <div class="flex" id="cat">
+            <p>All categories had <span>equal sales overall</span>, but the Eggs, Meat, and Fish categories showed the highest sales figures, though the difference from other categories was minimal. This indicates that while these categories performed slightly better, the overall sales distribution <span>remained fairly balanced.</span></p>
+            <img src="{{ url_for('static', filename='images/cat.jpg') }}" width="350" height="300"/>
+            
+        </div>
+        <div class="flex" id="out">
+            <img src="{{ url_for('static', filename='images/out.jpg') }}" width="350" height="300"/>
+            <p>The graph displays <span>predicted sales versus original sales on the test set</span>. It includes a <span>60% confidence interval</span>: the green points represent cases where the <span>original sales fall within this interval</span>, while the red points indicate cases where the <span>original sales fall outside of it.</span></p>      
+        </div>
+    </div>
+    <footer>
+            <a href="https://github.com/santhosh-reddy-126">GitHub</a>
+            <a href="https://www.linkedin.com/in/santhosh-reddy-beeram-2a5864315">Linkedin</a>
+    </footer>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            const inputs = document.querySelectorAll('input[type="number"], select');
+            let allFilled = true;
+
+            inputs.forEach(function(input) {
+                if (input.type === 'number' && input.value.trim() === '') {
+                    allFilled = false;
+                }
+                if (input.tagName === 'SELECT' && input.value==='') {
+                    allFilled = false;
+                }
+            });
+
+            if (!allFilled) {
+                alert('Please fill out all fields.');
+                event.preventDefault();
+            }else{
+                let l1 = document.querySelector("div.item");
+                l1.id="loading2";
+            }
+        });
+        window.onload = function() {
+            let sectionToScroll = "{{ status }}";
+            
+            if (sectionToScroll==="False") {
+                var element = document.getElementById('cont01');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    
+                }
+            }
+        };
+
+        document.getElementById("click").addEventListener('click',function(){
+            var ele = document.getElementById('target');
+            if (ele) {
+                ele.scrollIntoView({ behavior: 'smooth' });  
+            }
+        })
+    </script>
+
+</body>
+
+</html>
